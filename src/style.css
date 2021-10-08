@@ -6,5 +6,13 @@ html, body {
 }
 #content {
     display: flex;
-    flex-flow: column;
+    flex-flow: row;
+	align-items: center;
+	height: 100%;
+}
+#weather-view {
+	border: 2px solid blue;
+}
+#search-view {
+	height: 150px;
 }
