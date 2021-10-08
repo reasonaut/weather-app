@@ -13,6 +13,15 @@ html, body {
 #weather-view {
 	border: 2px solid blue;
 }
+#current-temp {
+	text-align: center;
+}
+#weather-details {
+	display: flex;
+	flex-flow: row;
+	justify-content: space-around;
+}
 #search-view {
-	height: 150px;
+	margin-left: 20px;
+	height: 170px;
 }
