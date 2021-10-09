@@ -13,6 +13,10 @@ html, body {
 #weather-view {
 	border: 2px solid blue;
 	padding: 10px;
+	min-width: 300px;
+}
+.location {
+	text-align: center;
 }
 .current-temp {
 	text-align: center;
@@ -28,4 +32,7 @@ html, body {
 #search-view {
 	margin-left: 20px;
 	height: 230px;
+}
+.search-error {
+	color: red;	
 }

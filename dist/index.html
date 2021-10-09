@@ -9,12 +9,12 @@
             <div id="weather-view">
                 <p class="description">Mostly Sunny</p>
                 <h1 class="location">Philadelphia, PA</h1>
-                <h2 class="current-temp">72</h2>
+                <h2 class="current-temp">72.04&#176;</h2>
                 <div id="weather-details">
                     <div>
-                        <span>Max: </span><span class="max-temp">77</span>
+                        <span>Max: </span><span class="max-temp">77&#176;</span>
                         <br>
-                        <span>Min: </span><span class="min-temp">62</span>
+                        <span>Min: </span><span class="min-temp">62&#176;</span>
                     </div>
                     <div>
                         <span>Humidity: </span><span class="humidity">55%</span>
@@ -22,9 +22,10 @@
                 </div>
             </div>
             <div id="search-view">
-                <label for="search">Search</label>
+                <label for="search">Search:</label>
                 <input type="text" name="search" id="city-search" placeholder="Your City"/>
                 <button type="button">Submit</button>
+                <div class="search-error"></div>
             </div>
         </div>
         <script src="main.js"></script>

@@ -3,18 +3,15 @@ import './style.css';
 const apiKey = '9859218e34307ba8d4e0feb95142c9fb';
 const apiUrl = 'http://api.openweathermap.org/data/2.5/weather?q=';
 const cityInput = document.querySelector('#city-search');
-const citySubmit = document.querySelector('button')
+const citySubmit = document.querySelector('button');
+const searchError = document.querySelector(".search-error");
 const description = document.querySelector('.description');
 const city = document.querySelector('.location');
 const currentTemp = document.querySelector('.current-temp');
 const maxTemp = document.querySelector('.max-temp');
 const minTemp = document.querySelector('.min-temp');
 const humidity = document.querySelector('.humidity');
-
-citySubmit.addEventListener('click', submitRequest);
-const testCity = 'Philadelphia';
-const url = `${apiUrl + testCity}&appid=${apiKey}&units=imperial`;
-console.log(url);
+const degree = '\u00B0';
 
 async function fetchCityData(url) {
     try {
@@ -37,23 +34,34 @@ function processResponse(response) {
     return data;
 }
 
-async function submitRequest(e) {
-    const requestCity = cityInput.value;
-    const requestUrl = `${apiUrl + requestCity}&appid=${apiKey}&units=imperial`;
-    const response = await fetchCityData(requestUrl);
-    console.log(response);
-    const data = processResponse(response);
-    updateCityWeather(data);
 
-}
 
 function updateCityWeather(data) {
     description.textContent = data.description;
     city.textContent = data.city;
-
+    currentTemp.textContent = data.currentTemp + degree;
+    maxTemp.textContent = data.maxTemp + degree;
+    minTemp.textContent = data.minTemp + degree;
+    humidity.textContent = `${data.humidity}%`;
 }
 
-fetchCityData(url).then(res => console.log(processResponse(res)));
+async function submitRequest() {
+    searchError.textContent = '';
+    const requestCity = cityInput.value;
+    const requestUrl = `${apiUrl + requestCity}&appid=${apiKey}&units=imperial`;
+    const response = await fetchCityData(requestUrl);
+    if (!response || response.cod === '404') {
+        searchError.textContent = response.message;
+        return;
+    }
+    const data = processResponse(response);
+    updateCityWeather(data);
+}
 
-
-
+function checkSubmit(e) {
+    if (e && e.keyCode === 13) {
+        submitRequest();
+    }
+}
+citySubmit.addEventListener('click', submitRequest);
+cityInput.addEventListener('keypress', checkSubmit)
